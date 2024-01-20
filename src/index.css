@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Etrusco';
+    src: url('../assets/fonts/etrusconowcondensed-black-italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }

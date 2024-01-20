@@ -8,7 +8,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["Work Sans", ...defaultTheme.fontFamily.sans],
+        display: ["Etrusco", ...defaultTheme.fontFamily.sans],
         body: ["Open Sans", ...defaultTheme.fontFamily.sans],
       },
       colors: {
@@ -24,6 +24,7 @@ module.exports = {
           }, */
         primary: {
           punchPeach: {
+            lighter: "#ffcfcc",
             DEFAULT: "#ffa299",
           },
           punchGrey: {

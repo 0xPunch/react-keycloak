@@ -46,69 +46,20 @@ const Wallet = () => {
     });
   }, []);
 
-  /* const walletDetails = async () => {
-    console.log("wallet");
-    try {
-      const response = await fetch(
-        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=aa-alaba-missi-1ruhjovms58dj82p",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": `che2$AQe2rexicho9Haro6u9as8oplciw7i02`,
-          },
-        }
-      );
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        setWalletResponse(jsonResponse);
-        console.log("Response wallet:", jsonResponse);
-      } else {
-        console.error("Request failed:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-   const balanceDetails = async () => {
-    console.log('balanceDetails called'); 
-    try {
-      const response = await fetch(
-        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/balance?walletid=aa-alaba-missi-1ruhjovms58dj82p",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-api-key": `che2$AQe2rexicho9Haro6u9as8oplciw7i02`,
-          }
-        }
-      );
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        setBalanceResponse(jsonResponse);
-        console.log("Response balance:", jsonResponse);
-      } else {
-        console.error("Request failed:", response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-  useEffect(() => {
-    const fetchData = async () => {
-      await walletDetails();
-      await balanceDetails();
-    };
-  
-    fetchData();
-  }, []); */
-
   return (
     <DeviceFrameset device="iPhone 8" color="black">
-      <div className="bg-primary-punchPeach text-center">
-        <h1 className="text-6xl font-bold underline">Hello Wallet!</h1>
-        {walletResponse?.result && <p>Address: {walletResponse?.result?.address}</p>}
-        {balanceResponse?.result && <p>Balance: {balanceResponse?.result?.balance}</p>}
+      <div className="bg-primary-punchPeach-lighter text-center py-20">
+        {balanceResponse?.result &&
+        <p className="text-8xl font-display">{"\u20AC"}{balanceResponse?.result?.balance}</p>
+      }
+      <button className="font-display border-black border-2 px-2 rounded-full">
+         + add funds
+      </button>
+      {walletResponse?.result &&
+      <div className="pt-20">
+        <p className="font-bold">Address: </p> {walletResponse?.result?.address}
+        </div>
+      }
       </div>
     </DeviceFrameset>
   );
