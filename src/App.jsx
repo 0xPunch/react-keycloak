@@ -1,11 +1,13 @@
 import Protected from "./components/Protected";
-import Public from "./components/Public";
+import StartOTP from "./components/StartOTP";
 
 import useAuth from "./hooks/useAuth";
 
 function App() {
   const [isLogin, token] = useAuth();
-  return isLogin ? <Protected token={token} /> : <Public />;
+  console.log("token" + token );
+  return isLogin ? <StartOTP token={token} /> : <StartOTP />;
+
 }
 
 export default App;
