@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-/* import { useNavigate } from 'react-router-dom'; */
+import { useNavigate } from 'react-router-dom';
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 
@@ -8,9 +8,8 @@ const StartOTP = () => {
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   };
-  /* const navigate = useNavigate(); */
+  const navigate = useNavigate();
   const sendOtp = async () => {
-    /* navigate('/src/components/ValidateOTP.jsx'); */
     console.log("sendOtp");
     try {
       console.log(JSON.stringify({ "\"phoneNumber\"": phoneNumber }));
@@ -28,7 +27,7 @@ const StartOTP = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         console.log("Response:", jsonResponse);
-        /* history.push('/src/components/ValidateOTP.jsx'); */
+        navigate('validate-otp');
         // Handle the response further if needed
       } else {
         console.error("Request failed:", response.status, response.statusText);
