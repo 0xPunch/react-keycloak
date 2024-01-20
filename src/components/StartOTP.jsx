@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-/* import { useHistory } from 'react-router-dom'; */
+/* import { useNavigate } from 'react-router-dom'; */
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 
@@ -8,19 +8,21 @@ const StartOTP = () => {
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   };
+  /* const navigate = useNavigate(); */
   const sendOtp = async () => {
-    /* const history = useHistory(); */
+    /* navigate('/src/components/ValidateOTP.jsx'); */
     console.log("sendOtp");
     try {
       console.log(JSON.stringify({ "\"phoneNumber\"": phoneNumber }));
       const response = await fetch(
-        "https://1be2-158-174-21-220.ngrok-free.app/send-otp",
+        "http://punch-auth-env.eba-mk5x9uxm.eu-north-1.elasticbeanstalk.com/send-otp",
         {
           method: "POST",
           headers: {
+            "Content-Type": "application/json",
             "x-api-key": `che2$AQe2rexicho9Haro6u9as8oplciw7i02`,
           },
-          body: JSON.stringify({ "\"phoneNumber\"": phoneNumber }),
+          body: JSON.stringify({ phoneNumber: phoneNumber }),
         }
       );
       if (response.ok) {
