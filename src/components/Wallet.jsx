@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FaWifi } from "react-icons/fa";
+import { FaBatteryFull } from "react-icons/fa";
+import { FaSignal } from "react-icons/fa";
 /* import { useNavigate } from "react-router-dom"; */
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
@@ -7,7 +10,7 @@ const Wallet = () => {
   const [walletResponse, setWalletResponse] = useState(null);
   const [balanceResponse, setBalanceResponse] = useState(null);
 
-   const fetchData = async (url, setter) => {
+  const fetchData = async (url, setter) => {
     console.log("fetchData called for", url);
     try {
       const response = await fetch(url, {
@@ -48,18 +51,36 @@ const Wallet = () => {
 
   return (
     <DeviceFrameset device="iPhone 8" color="black">
-      <div className="bg-primary-punchPeach-lighter text-center py-20">
-        {balanceResponse?.result &&
-        <p className="text-8xl font-display">{"\u20AC"}{balanceResponse?.result?.balance}</p>
-      }
-      <button className="font-display border-black border-2 px-2 rounded-full">
-         + add funds
-      </button>
-      {walletResponse?.result &&
-      <div className="pt-20">
-        <p className="font-bold">Address: </p> {walletResponse?.result?.address}
+      <div className="bg-primary-punchPeach-lighter text-center">
+        <div className="flex justify-between pt-1">
+          <div className="text-sm pl-2">9:42</div>
+          <div className="flex space-x-2 pr-2">
+            <FaSignal />
+            <FaBatteryFull />
+            <FaWifi />
+          </div>
         </div>
-      }
+        <div className="pt-36">
+          {balanceResponse?.result && (
+            <p className="text-8xl font-display">
+              {"\u20AC"}
+              {balanceResponse?.result?.balance}
+            </p>
+          )}
+        </div>
+        <div className="pt-3">
+          <button className="font-display border-black border-2 px-2 rounded-full">
+            + add funds
+          </button>
+        </div>
+        <div className="flex py-20">
+          {walletResponse?.result && (
+            <div className="pt-20">
+              <p className="font-bold">Address: </p>{" "}
+              {walletResponse?.result?.address}
+            </div>
+          )}
+        </div>
       </div>
     </DeviceFrameset>
   );
