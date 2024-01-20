@@ -7,7 +7,7 @@ const Wallet = () => {
   const [walletResponse, setWalletResponse] = useState(null);
   const [balanceResponse, setBalanceResponse] = useState(null);
 
-  /*  const fetchData = async (url, setter) => {
+   const fetchData = async (url, setter) => {
     console.log("fetchData called for", url);
     try {
       const response = await fetch(url, {
@@ -44,9 +44,9 @@ const Wallet = () => {
       console.log("walletResponse", walletResponse?.result?.address);
       console.log("balanceResponse", balanceResponse?.result?.balance);
     });
-  }, []); */
+  }, []);
 
-  const walletDetails = async () => {
+  /* const walletDetails = async () => {
     console.log("wallet");
     try {
       const response = await fetch(
@@ -101,7 +101,7 @@ const Wallet = () => {
     };
   
     fetchData();
-  }, []);
+  }, []); */
 
   return (
     <DeviceFrameset device="iPhone 8" color="black">
