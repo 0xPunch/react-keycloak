@@ -1,28 +1,49 @@
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useRoutes,
+} from "react-router-dom";
 import Welcome from "./components/Welcome";
 import StartOTP from "./components/StartOTP";
 import ValidateOTP from "./components/ValidateOTP";
 import Wallet from "./components/Wallet";
 import InitPayment from "./components/InitPayment";
-/* import PrivateRoute from "./components/PrivateRoute"; */
-
 import useAuth from "./hooks/useAuth";
 
 function App() {
   const [isLogin, token] = useAuth();
   const isVadlidateSuccess = true;
-  console.log("token" + token );
-  return (
+
+  let element = useRoutes([
+    { path: "/welcome", element: <Welcome /> },
+    {
+      path: "/start-opt",
+      element: isLogin ? <StartOTP token={token} /> : <StartOTP />,
+      children: [
+        {
+          path: "validate-otp",
+          element: isVadlidateSuccess ? <ValidateOTP /> : <StartOTP />,
+        },
+        { path: "wallet", element: <Wallet /> },
+        { path: "init-payment", element: <InitPayment /> },
+      ],
+    },
+  ]);
+
+  return element;
+
+  /* (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<Welcome /> } /> */}
-        <Route path="/" element={isLogin ? <StartOTP token={token} /> : <StartOTP />} />
-        <Route path="/validate-otp" element={isVadlidateSuccess ? <ValidateOTP /> : <StartOTP />} />
-        <Route path="/wallet" element={<Wallet /> } />
-        <Route path="/init-payment" element={<InitPayment /> } />
+        <Route path="/welcome" element={<Welcome /> } />
+        <PrivateRoute path="/" element={isLogin ? <StartOTP token={token} /> : <StartOTP />} />
+        <PrivateRoute path="/validate-otp" element={isVadlidateSuccess ? <ValidateOTP /> : <StartOTP />} />
+        <PrivateRoute path="/wallet" element={<Wallet /> } />
+        <PrivateRoute path="/init-payment" element={<InitPayment /> } />
       </Routes>
     </Router>
-  );
+  ); */
 }
 
 export default App;
