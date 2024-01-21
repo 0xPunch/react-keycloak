@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { FaWifi } from "react-icons/fa";
 import { FaBatteryFull } from "react-icons/fa";
 import { FaSignal } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+/* import { useNavigate } from "react-router-dom"; */
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 
 const Wallet = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [walletResponse, setWalletResponse] = useState(null);
   const [balanceResponse, setBalanceResponse] = useState(null);
-  const navigate = useNavigate();
+
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
   const fetchData = async (url, setter) => {
     console.log("fetchData called for", url);
     try {
@@ -23,7 +28,6 @@ const Wallet = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         setter(jsonResponse);
-        
         console.log("Response:", jsonResponse);
         console.log("jsonResponse after setBalanceResponse:", jsonResponse);
       } else {
@@ -62,7 +66,7 @@ const Wallet = () => {
               <FaWifi />
             </div>
           </div>
-          <div className="pt-36">
+          {/* <div className="pt-36">
             {balanceResponse?.result && (
               <p className="text-8xl font-display">
                 {"\u20AC"}
@@ -70,30 +74,49 @@ const Wallet = () => {
               </p>
             )}
           </div>
-          <div className="pt-3">
-            <button className="font-display border-black border-2 px-2 rounded-full">
-              + add funds
-            </button>
+          0723115353 > aa-alaba-missi-1ruhjovms58dj82p 0730803588 > aa-coffe-nine-27odqnjao99bma21
+          */}
+          <div className="py-20">
+
+          <label
+                className="flex justify-start text-sm"
+                htmlFor="recipient_phone_number"
+              >
+                Phone Number
+              </label>
+              <input
+                type="text"
+                id="recipient_phone_number"
+                className="bg-primary-PunchGrey border border-primary-PunchGrey text-gray-900 text-sm rounded-lg focus:ring-primary-punchPeach focus:border-primary-punchGrey-darker block w-full p-2.5"
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+                required
+              />
+          <label
+                className="flex justify-start text-sm"
+                htmlFor="phone_number"
+              >
+                Amount
+              </label>
+              <input
+                type="text"
+                id="phone_number"
+                className="bg--primary-PunchGrey border border-primary-PunchGrey text-gray-900 text-sm rounded-lg focus:ring-primary-punchPeach focus:border-primary-punchGrey-darker block w-full p-2.5"
+                placeholder="Amount"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
+                required
+              />
           </div>
-          <div className="flex pt-12 pb-20">
+          <div className="flex pt-12 pb-60">
                 <button
-                onClick={() => {navigate("/init-payment");}}
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
+                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-20 w-full rounded-xl uppercase font-body text-4xl"
                   type="submit"
                 >
-                  Send
+                  Get Punch
                 </button>
               </div>
-          <div className="flex pb-12 justify-center">
-            {walletResponse?.result && (
-              <div className="pt-20">
-                <p className="font-bold">Address: </p>
-                <p className="flex text-sm text-center">
-                  {walletResponse?.result?.address}
-                </p>
-              </div>
-            )}
-          </div>
         </div>
       </DeviceFrameset>
     </div>

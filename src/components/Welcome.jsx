@@ -51,7 +51,7 @@ const StartOTP = () => {
               <FaWifi />
             </div>
           </div>
-          <div className="flex-col width-full pt-6">
+          <div className="flex-col width-full pt-6 pb-60">
             <h1 className="font-body uppercase text-7xl leading-none tracking-wide">
               Borderless
             </h1>
@@ -61,39 +61,14 @@ const StartOTP = () => {
             </h1>
           </div>
 
-          <form
-            className="flex flex-col justify-center items-center pt-40"
-            onSubmit={(event) => {
-              event.preventDefault();
-              sendOtp();
-            }}
-          >
-            <div className="justify-center">
-              <label
-                className="flex justify-start text-sm"
-                htmlFor="phone_number"
-              >
-                Please enter you phone number
-              </label>
-              <input
-                type="text"
-                id="phone_number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                placeholder="Enter phone number"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                required
-              />
-              <div className="flex pt-12 pb-60">
-                <button
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
-                  type="submit"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </div>
-          </form>
+          <div className="flex pt-12 pb-6">
+            <button
+              className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
+              type="text"
+            >
+              Sign Up
+            </button>
+          </div>
         </div>
       </DeviceFrameset>
     </div>
