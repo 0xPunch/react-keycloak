@@ -76,6 +76,7 @@ const ValidateOTP = () => {
               onChange={handlePhoneNumberChange}
               required
             />
+            <label className="flex justify-start text-sm pt-4" htmlFor="phone_number">Validation</label>
             <input
               type="text"
               id="verification_code"
@@ -87,7 +88,7 @@ const ValidateOTP = () => {
             />
             <div className="flex pt-12 pb-60">
               <button
-                className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-12 w-full rounded-xl uppercase font-body text-4xl"
+                className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
                 type="submit"
               >
                 Verify

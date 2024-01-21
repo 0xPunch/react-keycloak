@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FaWifi } from "react-icons/fa";
+import { FaBatteryFull } from "react-icons/fa";
+import { FaSignal } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
@@ -28,38 +31,40 @@ const StartOTP = () => {
         const jsonResponse = await response.json();
         console.log("Response:", jsonResponse);
         navigate('validate-otp');
-        // Handle the response further if needed
       } else {
         console.error("Request failed:", response.status, response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
     }
-
-    /* const config = {
-      headers: {
-        "x-api-key": `che2$AQe2rexicho9Haro6u9as8oplciw7i02`,
-      },
-    };
-
-    axios
-      .post("http://punch-auth-env.eba-mk5x9uxm.eu-north-1.elasticbeanstalk.com/send-otp", config)
-      .then((res) => setData(res.data))
-      .catch((err) => console.error(err)); */
   };
 
   return (
     <DeviceFrameset device="iPhone 8" color="black">
-      <div className="bg-primary-punchPeach text-center">
-        <h1 className="text-6xl font-bold underline">Hello Punch User!</h1>
+      <div className="container bg-primary-punchPeach-lighter text-center w-full">
+        <div className="flex justify-between pt-1">
+          <div className="text-sm pl-2">9:41</div>
+          <div className="flex space-x-2 pr-2">
+            <FaSignal />
+            <FaBatteryFull />
+            <FaWifi />
+          </div>
+        </div>
+        <div className="flex-col width-full pt-6">
+          <h1 className="font-body uppercase text-7xl leading-none tracking-wide">Borderless</h1>
+          <h1 className="font-body uppercase text-9xl leading-none">Money</h1>
+          <h1 className="font-body uppercase text-7xl leading-none tracking-wider">Transfers</h1>
+        </div>
 
         <form
+        className="flex flex-col justify-center items-center pt-40"
           onSubmit={(event) => {
             event.preventDefault();
             sendOtp();
           }}
         >
           <div className="justify-center">
+          <label className="flex justify-start text-sm" htmlFor="phone_number">Please enter you phone number</label>
             <input
               type="text"
               id="phone_number"
@@ -69,20 +74,14 @@ const StartOTP = () => {
               onChange={handlePhoneNumberChange}
               required
             />
+            <div className="flex pt-12 pb-60">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
               type="submit"
             >
               Sign Up
             </button>
-
-            {/* <input
-              className="bg-primary-punchGrey text-2xl font-bold text-center"
-              type="text"
-              value={phoneNumber}
-              onChange={handlePhoneNumberChange}
-              placeholder="Enter phone number"
-            /> */}
+            </div>
           </div>
         </form>
       </div>
