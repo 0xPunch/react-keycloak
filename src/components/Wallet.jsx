@@ -78,8 +78,8 @@ const Wallet = () => {
           <div className="flex pt-12 pb-20">
                 <button
                 onClick={() => {navigate("/init-payment");}}
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
-                  type="submit"
+                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 mx-2 w-full rounded-xl uppercase font-body text-4xl"
+                  type="text"
                 >
                   Send
                 </button>

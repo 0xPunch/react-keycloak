@@ -4,6 +4,7 @@ import StartOTP from "./components/StartOTP";
 import ValidateOTP from "./components/ValidateOTP";
 import Wallet from "./components/Wallet";
 import InitPayment from "./components/InitPayment";
+import SuccessRecived from "./components/SuccessRecived";
 /* import PrivateRoute from "./components/PrivateRoute"; */
 
 import useAuth from "./hooks/useAuth";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/validate-otp" element={isVadlidateSuccess ? <ValidateOTP /> : <StartOTP />} />
         <Route path="/wallet" element={<Wallet /> } />
         <Route path="/init-payment" element={<InitPayment /> } />
+        <Route path="/success-recived" element={<SuccessRecived /> } />
       </Routes>
     </Router>
   );
