@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Etrusco';
+    font-family: 'Etrusco-italic';
     src: url('../assets/fonts/etrusconowcondensed-black-italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Etrusco-black';
+    src: url('../assets/fonts/etrusconowcondensed-black.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
   }

@@ -8,8 +8,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ["Etrusco", ...defaultTheme.fontFamily.sans],
-        body: ["Open Sans", ...defaultTheme.fontFamily.sans],
+        display: ["Etrusco-italic", ...defaultTheme.fontFamily.sans],
+        body: ["Etrusco-black", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         transparent: "transparent",
@@ -29,6 +29,7 @@ module.exports = {
           },
           punchGrey: {
             DEFAULT: "#ebebeb",
+            darker: "#232323",
           },
           punchYellow: {
             DEFAULT: "#f9d56e",

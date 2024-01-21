@@ -51,7 +51,7 @@ const Wallet = () => {
 
   return (
     <DeviceFrameset device="iPhone 8" color="black">
-      <div className="bg-primary-punchPeach-lighter text-center">
+      <div className="container bg-primary-punchPeach-lighter text-center">
         <div className="flex justify-between pt-1">
           <div className="text-sm pl-2">9:42</div>
           <div className="flex space-x-2 pr-2">
@@ -76,8 +76,11 @@ const Wallet = () => {
         <div className="flex py-20">
           {walletResponse?.result && (
             <div className="pt-20">
-              <p className="font-bold">Address: </p>{" "}
+              <p className="font-bold">Address: </p>
+              <p className="flex text-sm text-center">
               {walletResponse?.result?.address}
+
+              </p>
             </div>
           )}
         </div>
