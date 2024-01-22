@@ -39,6 +39,11 @@ const Wallet = () => {
   };
 
   useEffect(() => {
+    const userAData = localStorage.getItem('userA');
+    const userBData = localStorage.getItem('userB');
+    const userA = JSON.parse(userAData);
+    const userB = JSON.parse(userBData);
+
     Promise.all([
       fetchData(
         "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=aa-alaba-missi-1ruhjovms58dj82p",

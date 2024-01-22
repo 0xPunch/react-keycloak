@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Keycloak from "keycloak-js";
+import { jwtDecode } from 'jwt-decode';
+
 
 const client = new Keycloak({
   url: 'https://ims.getpunch.io/',
@@ -12,6 +14,7 @@ const useAuth = () => {
   console.log("isRun.current:" + isRun)
 
   const [token, setToken] = useState(null);
+  const [email, setEmail] = useState(null);
   const [isLogin, setLogin] = useState(false);
 
   useEffect(() => {
@@ -25,6 +28,11 @@ const useAuth = () => {
       })
       .then((res) => {
         setLogin(res);
+        console.log(client.token);
+        const decodedToken = jwtDecode(client.token);
+        localStorage.setItem("email", decodedToken.email)
+        
+
         setToken(client.token);
       });
   }, []);
