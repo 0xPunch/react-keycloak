@@ -53,8 +53,8 @@ const Wallet = () => {
   return (
     <div className="container flex justify-center mt-20">
       <DeviceFrameset device="iPhone 8" color="black">
-        <div className="container bg-primary-punchPeach-lighter text-center">
-          <div className="flex justify-between pt-1">
+        <div className="container bg-primary-punchPeach-lighter text-center ">
+          <div className="flex justify-between pt-1 pb-20">
             <div className="text-sm pl-2">9:42</div>
             <div className="flex space-x-2 pr-2">
               <FaSignal />
@@ -62,9 +62,11 @@ const Wallet = () => {
               <FaWifi />
             </div>
           </div>
-          <div>
-            <h1 className="font-display uppercase">Sent</h1>
+          <div className="pt-30">
+            <h1 className="font-body uppercase text-6xl">Sent</h1>
           </div>
+
+          {/* Vad man har skickat */}
           <div className="pt-36">
             {balanceResponse?.result && (
               <p className="text-8xl font-display">
@@ -76,13 +78,13 @@ const Wallet = () => {
           <div className="flex pt-12 pb-20">
                 <button
                 onClick={() => {navigate("/init-payment");}}
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
+                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl mx-2"
                   type="submit"
                 >
-                  Send
+                  Close
                 </button>
               </div>
-          <div className="flex pb-12 justify-center">
+         {/*  <div className="flex pb-12 justify-center">
             {walletResponse?.result && (
               <div className="pt-20">
                 <p className="font-bold">Address: </p>
@@ -91,7 +93,7 @@ const Wallet = () => {
                 </p>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </DeviceFrameset>
     </div>
