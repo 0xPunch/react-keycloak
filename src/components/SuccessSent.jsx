@@ -11,9 +11,8 @@ const Wallet = () => {
   const [balanceResponse, setBalanceResponse] = useState(null);
   const navigate = useNavigate();
   const fetchData = async (url, setter) => {
-
+    console.log("fetchData called for", url);
     try {
-      
       const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -24,7 +23,7 @@ const Wallet = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         setter(jsonResponse);
-
+        
         console.log("Response:", jsonResponse);
         console.log("jsonResponse after setBalanceResponse:", jsonResponse);
       } else {
@@ -36,43 +35,13 @@ const Wallet = () => {
   };
 
   useEffect(() => {
-    const email = localStorage.getItem('email');
-      console.log(email);
-      if (email === "majed@getpunch.io") {
-        localStorage.setItem('userA', JSON.stringify({
-          email: email,
-          address: "0x4fcC6c151e766B253D8dB8503dC0E32B67a5266a",
-          walletId: "aa-alaba-missi-1ruhjovms58dj82p"
-        }));
-        localStorage.setItem('userB', JSON.stringify({
-          email: "daniel@getpunch.io",
-          address: "0x00f2DfcB1C78ebC278529Bf52E76eC8fB6F509a9",
-          walletId: "aa-coffe-nine-27odqnjao99bma21"
-        }));
-      }
-      if (email === "daniel@getpunch.io") {
-        localStorage.setItem('userA', JSON.stringify({
-          email: email,
-          address: "0x00f2DfcB1C78ebC278529Bf52E76eC8fB6F509a9",
-          walletId: "aa-coffe-nine-27odqnjao99bma21"
-        }));
-        localStorage.setItem('userB', JSON.stringify({
-          email: "majed@getpunch.io",
-          address: "0x4fcC6c151e766B253D8dB8503dC0E32B67a5266a",
-          walletId: "aa-alaba-missi-1ruhjovms58dj82p"
-        }));
-      }
-
-      const userData = localStorage.getItem('userA');
-      const userA = JSON.parse(userData);
-
     Promise.all([
       fetchData(
-        `http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=${userA.walletId}`,
+        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=aa-alaba-missi-1ruhjovms58dj82p",
         setWalletResponse
       ),
       fetchData(
-        `http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/balance?walletid=${userA.walletId}`,
+        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/balance?walletid=aa-alaba-missi-1ruhjovms58dj82p",
         setBalanceResponse
       ),
     ]).then(() => {
@@ -93,6 +62,9 @@ const Wallet = () => {
               <FaWifi />
             </div>
           </div>
+          <div>
+            <h1 className="font-display uppercase">Sent</h1>
+          </div>
           <div className="pt-36">
             {balanceResponse?.result && (
               <p className="text-8xl font-display">
@@ -101,16 +73,11 @@ const Wallet = () => {
               </p>
             )}
           </div>
-          <div className="pt-3">
-            <button className="font-display border-black border-2 px-2 rounded-full">
-              + add funds
-            </button>
-          </div>
           <div className="flex pt-12 pb-20">
                 <button
                 onClick={() => {navigate("/init-payment");}}
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 mx-2 w-full rounded-xl uppercase font-body text-4xl"
-                  type="text"
+                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl"
+                  type="submit"
                 >
                   Send
                 </button>
