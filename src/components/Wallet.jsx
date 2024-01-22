@@ -23,7 +23,7 @@ const Wallet = () => {
       if (response.ok) {
         const jsonResponse = await response.json();
         setter(jsonResponse);
-        
+
         console.log("Response:", jsonResponse);
         console.log("jsonResponse after setBalanceResponse:", jsonResponse);
       } else {
@@ -35,25 +35,75 @@ const Wallet = () => {
   };
 
   useEffect(() => {
-    Promise.all([
-      fetchData(
-        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=aa-alaba-missi-1ruhjovms58dj82p",
-        setWalletResponse
-      ),
-      fetchData(
-        "http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/balance?walletid=aa-alaba-missi-1ruhjovms58dj82p",
-        setBalanceResponse
-      ),
-    ]).then(() => {
-      console.log("walletResponse", walletResponse?.result?.address);
-      console.log("balanceResponse", balanceResponse?.result?.balance);
-    });
+    const email = localStorage.getItem("email");
+    console.log(email);
+    if (email === "test@test.com") {
+      localStorage.setItem(
+        "userA",
+        JSON.stringify({
+          email: email,
+          address: "0x4fcC6c151e766B253D8dB8503dC0E32B67a5266a",
+          walletId: "aa-alaba-missi-1ruhjovms58dj82p",
+        })
+      );
+      localStorage.setItem(
+        "userB",
+        JSON.stringify({
+          email: "daniel@getpunch.io",
+          address: "0x00f2DfcB1C78ebC278529Bf52E76eC8fB6F509a9",
+          walletId: "aa-coffe-nine-27odqnjao99bma21",
+        })
+      );
+    }
+    if (email === "daniel@getpunch.io") {
+      localStorage.setItem(
+        "userA",
+        JSON.stringify({
+          email: email,
+          address: "0x00f2DfcB1C78ebC278529Bf52E76eC8fB6F509a9",
+          walletId: "aa-coffe-nine-27odqnjao99bma21",
+        })
+      );
+      localStorage.setItem(
+        "userB",
+        JSON.stringify({
+          email: "majed@getpunch.io",
+          address: "0x4fcC6c151e766B253D8dB8503dC0E32B67a5266a",
+          walletId: "aa-alaba-missi-1ruhjovms58dj82p",
+        })
+      );
+    }
   }, []);
+
+  const userData = localStorage.getItem("userA");
+  const userA = JSON.parse(userData);
+  console.log(userA.walletId);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      Promise.all([
+        fetchData(
+          `http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/wallet?walletid=${userA.walletId}`,
+          setWalletResponse
+        ),
+        fetchData(
+          `http://punch-be-env.eba-afpqhbkf.eu-north-1.elasticbeanstalk.com/balance?walletid=${userA.walletId}`,
+          setBalanceResponse
+        ),
+      ]).then(() => {
+        console.log("walletResponse", walletResponse?.result?.address);
+        console.log("balanceResponse", balanceResponse?.result?.balance);
+      });
+    }, 5000); // 5000 milliseconds = 5 seconds
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array means this effect runs once on mount and clean up on unmount
 
   return (
     <div className="container flex justify-center mt-20">
       <DeviceFrameset device="iPhone 8" color="black">
-        <div className="container bg-primary-punchPeach-lighter text-center">
+        <div className="container bg-primary-punchPeach-lighter text-center h-full">
           <div className="flex justify-between pt-1">
             <div className="text-sm pl-2">9:42</div>
             <div className="flex space-x-2 pr-2">
@@ -75,15 +125,17 @@ const Wallet = () => {
               + add funds
             </button>
           </div>
-          <div className="flex pt-12 pb-20">
-                <button
-                onClick={() => {navigate("/init-payment");}}
-                  className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 mx-2 w-full rounded-xl uppercase font-body text-4xl"
-                  type="text"
-                >
-                  Send
-                </button>
-              </div>
+          <div className="flex pt-32">
+            <button
+              onClick={() => {
+                navigate("/init-payment");
+              }}
+              className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 mx-2 w-full rounded-xl uppercase font-body text-4xl"
+              type="text"
+            >
+              Send Money
+            </button>
+          </div>
           <div className="flex pb-12 justify-center">
             {walletResponse?.result && (
               <div className="pt-20">

@@ -12,6 +12,7 @@ const StartOTP = () => {
     setPhoneNumber(event.target.value);
   };
   const navigate = useNavigate();
+  
   const sendOtp = async () => {
     console.log("sendOtp");
     try {
