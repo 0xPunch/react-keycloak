@@ -34,10 +34,12 @@ const Wallet = () => {
     }
   };
 
+
   useEffect(() => {
     const email = localStorage.getItem("email");
+    console.log("email3" + email)
     console.log(email);
-    if (email === "test@test.com") {
+    if (email === "majed@getpunch.io") {
       localStorage.setItem(
         "userA",
         JSON.stringify({
@@ -73,13 +75,11 @@ const Wallet = () => {
         })
       );
     }
-  }, []);
 
-  const userData = localStorage.getItem("userA");
-  const userA = JSON.parse(userData);
-  console.log(userA.walletId);
-
-  useEffect(() => {
+    const userData = localStorage.getItem("userA");
+    const userA = JSON.parse(userData);
+    console.log(userA.walletId);
+  
     const intervalId = setInterval(() => {
       Promise.all([
         fetchData(
