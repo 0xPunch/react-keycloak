@@ -37,7 +37,7 @@ const SuccessSent = () => {
           <div className="flex">
             <button
               onClick={() => {
-                navigate("/start-opt");
+                navigate("/wallet");
               }}
               className="bg-primary-punchGrey-darker hover:bg-primary-punchPeach text-primary-punchPeach-lighter font-bold py-4 px-32 w-full rounded-xl uppercase font-body text-4xl mx-2"
               type="submit"

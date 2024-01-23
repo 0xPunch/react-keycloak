@@ -7,7 +7,8 @@ import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 
 const ValidateOTP = () => {
-  const [phoneNumber, setPhoneNumber] = useState("+46730803588");
+  const phonenr = localStorage.getItem("phoneNumber");
+  const [phoneNumber, setPhoneNumber] = useState( phonenr );
   const [verificationCode, setVerificationCode] = useState("");
 
   const handlePhoneNumberChange = (event) => {

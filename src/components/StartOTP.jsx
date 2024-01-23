@@ -7,11 +7,13 @@ import { DeviceFrameset } from "react-device-frameset";
 import "react-device-frameset/styles/marvel-devices.min.css";
 
 const StartOTP = () => {
-  const [phoneNumber, setPhoneNumber] = useState("+46730803588");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  localStorage.setItem("phoneNumber", phoneNumber);
   const handlePhoneNumberChange = (event) => {
     setPhoneNumber(event.target.value);
   };
   const navigate = useNavigate();
+  
   
   const sendOtp = async () => {
     console.log("sendOtp");
